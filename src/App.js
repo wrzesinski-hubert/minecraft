@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Server from './Components/Server/Server'
+import Save from './Components/Save/Save'
+import TextField from '@material-ui/core/TextField';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div className="MainComponent">
+      <Server/>
+      <Save/>
+      <div><TextField id="outlined-basic" label="Hasło" variant="outlined" /></div>
+    </div> 
+      );
 }
 
 export default App;
