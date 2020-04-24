@@ -52,14 +52,25 @@ export default class RightGrid extends React.Component {
     };
   }
 
+  getSnapshotState(){
+    this.apirequester.isSnapshotReady().then((result)=>{
+      this.setState({buttonState:!result});
+      console.log(this.state.buttonState);
+    });
+    if(this.state.buttonState==true){
+      setInterval(()=>this.getSnapshotState(),5000);
+    }
+  }
+
+
   componentDidMount(){
     this.requestDate();
+    this.getSnapshotState();
   }
 
   requestDate() {
     return this.apirequester.getDate().then((d) => {
       this.setState({date:`${d.getDay()}.${d.getMonth()}.${d.getFullYear()}r.`})
-      console.log(this.state)
     });
   }
 
