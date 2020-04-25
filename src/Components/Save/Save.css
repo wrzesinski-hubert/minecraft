@@ -1,0 +1,15 @@
+.container{
+    padding: 12px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid;
+}
+.root{
+    flex-grow: 1;
+    width: 280px;
+    height: 160px;
+    float: right;
+}
+.paragraf{
+    margin:0;
+    }
