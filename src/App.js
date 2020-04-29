@@ -11,7 +11,7 @@ function App() {
     <div className="MainComponent">
       <Server password={passwd}/>
       <Save/>
-      <div><TextField id="outlined-basic" label="Hasło" variant="outlined" onChange={(e)=>{setPasswd(e.target.value)}}/></div>
+      <div><TextField id="outlined-basic" label="Hasło" variant="outlined" type="password" onChange={(e)=>{setPasswd(e.target.value)}}/></div>
     </div> 
       );
 }
