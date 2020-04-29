@@ -1,0 +1,12 @@
+.containery{
+    padding: 12px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid;
+}
+.rooty{
+    flex-grow: 1;
+    width: 200px;
+    height: 160px;
+    float: left;
+}

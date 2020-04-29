@@ -35,7 +35,6 @@ export default class RightGrid extends React.Component {
   getSnapshotState(){
     this.apirequester.isSnapshotReady().then((result)=>{
       this.setState({buttonState:!result});
-      console.log(this.state.buttonState);
     });
   }
 
