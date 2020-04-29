@@ -1,4 +1,5 @@
 import axios from 'axios';
+import FileDownload from 'js-file-download'
 
 class ApiRequester {
     constructor(serverURL){
@@ -22,8 +23,14 @@ class ApiRequester {
       })
     }
 
-    
+    createSnapshot(){
+      return axios.get(`${this.serverURL}/save/snapshot`);
+    }    
 
+    download(){
+      window.open(`${this.serverURL}/save/download`, "_blank");  
+      
+    }
 }
 
 export default ApiRequester;

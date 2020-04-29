@@ -7,6 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import ApiRequester from "../../Core/ApiRequester";
 import './Save.css';
 
+
 const ColorButton = withStyles((theme) => ({
   root: {
     backgroundColor: "#7986cb",
@@ -47,11 +48,10 @@ export default class RightGrid extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot){
     if (prevState.buttonState!=this.state.buttonState && this.state.buttonState==true){
       this.interval=setInterval(()=>this.getSnapshotState(),5000);
-      console.log("1");
     }
     if (prevState.buttonState!=this.state.buttonState && this.state.buttonState==false){
       clearInterval(this.interval);
-      console.log("2");
+      this.requestDate();
     }
   }
 
@@ -62,7 +62,15 @@ export default class RightGrid extends React.Component {
   }
 
   change() {
-    this.getSnapshotState();
+    this.apirequester.createSnapshot().then(()=>{this.getSnapshotState()});
+  }
+
+  download(){
+    if(this.state.buttonState==false)
+    {
+      this.apirequester.download();
+      
+    }
   }
 
   render() {  
@@ -92,7 +100,7 @@ export default class RightGrid extends React.Component {
               <ColorButton
                 variant="contained"
                 color="primary"
-                
+                onClick={()=> this.download()}
               >
                 
                 {!this.state.buttonState ? "Pobierz" : ""}
