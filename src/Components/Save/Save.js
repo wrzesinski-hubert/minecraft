@@ -31,30 +31,38 @@ export default class RightGrid extends React.Component {
     };
   }
 
-  // getSnapshotState(){
-  //   this.apirequester.isSnapshotReady().then((result)=>{
-  //     this.setState({buttonState:!result});
-  //     console.log(this.state.buttonState);
-  //   });
-  //   if(this.state.buttonState==true){
-  //     setInterval(()=>this.getSnapshotState(),5000);
-  //   }
-  // }
+  getSnapshotState(){
+    this.apirequester.isSnapshotReady().then((result)=>{
+      this.setState({buttonState:!result});
+      console.log(this.state.buttonState);
+    });
+  }
 
 
-  // componentDidMount(){
-  //   this.requestDate();
-  //   this.getSnapshotState();
-  // }
+  componentDidMount(){
+    this.requestDate();
+    this.getSnapshotState();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot){
+    if (prevState.buttonState!=this.state.buttonState && this.state.buttonState==true){
+      this.interval=setInterval(()=>this.getSnapshotState(),5000);
+      console.log("1");
+    }
+    if (prevState.buttonState!=this.state.buttonState && this.state.buttonState==false){
+      clearInterval(this.interval);
+      console.log("2");
+    }
+  }
 
   requestDate() {
     return this.apirequester.getDate().then((d) => {
-      this.setState({date:`${d.getDay()}.${d.getMonth()}.${d.getFullYear()}r.`})
+      this.setState({date:`${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}r.`})
     });
   }
 
   change() {
-    this.setState({buttonState: !this.state.buttonState });
+    this.getSnapshotState();
   }
 
   render() {  
